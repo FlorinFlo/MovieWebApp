@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    
+</head>
+<body ng-controller="movieController" >
+    <div class="row" style="padding-top:50px">
+            <div class="col-xs-4" ng-controller="navigationController">
+                <ul class="nav nav-pills">
+                    <li ng-class="{active:isActive('/movies')}"><a ui-sref="movies">Movies</a></li>
+                    <li ng-class="{active:isActive('/tvShows')}"><a ui-sref="tvShows">Tv Shows</a></li>
+                </ul>
+            </div>
+        </div>
+    <div class="row" style="padding:25px;text-align:center;width:100%">
+            <div class="searchContainer" ng-controller="searchController" >                
+                <input class="form-control" type="seach" style="width:100%" placeholder="Search" ng-model="searchBox" ng-change="changeHandler()"></input>    
+            </div>
+            
+        </div>
+    <div class="row" >
+        <div ng-repeat="movieOrTv in itemList track by $index"> 
+            <div class="clearfix" ng-if="$index %2 == 0"></div>
+            <div  class="col-lg-6"  >                 
+                <div style="border:solid 1px;margin:25px"  >
+                    <a id="detail" ui-sref="details({id:movieOrTv.id})"  >                    
+                        <img class="movie" ng-src="{{link(movieOrTv)}}"  >
+                        </img>
+                        <h2 >{{title(movieOrTv)}}</h2>  
+                    </a>
+                </div>
+           
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
